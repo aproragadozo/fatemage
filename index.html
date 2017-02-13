@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="eng-us" ng-app="plunker">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Fate Mage</title>
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body ng-controller="ctrl" style="margin: 0; width:100%;">
+    <div id=" wrapper " style="display: flex; flex-direction: column; justify-content: center; width:100vw; ">
+        <div id="box " style="display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: space-around; align-self: center;max-width:100vw; ">
+            <div ng-repeat="result in results" style="display: flex; flex-direction: row; justify-content: center; width: 100%; height: 100%;">
+                <img id="preloader" src="spinner.gif" ng-show="loading" style="margin: auto; z-index:5;" />
+                <img imageonload="loading=!loading" ng-hide="loading" src="{{result.src}} " alt="{{result.id}}" ng-click="returnOne(result)" style="max-height: 100vh;" />
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
