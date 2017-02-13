@@ -4,7 +4,7 @@ app.service('keyService', function() {
     this.key = '160f672f62d2f429e0f06fe9eb8cb555';
 });
 
-app.controller('ctrl', ['$scope', '$http', '$sce', 'keyService', function($scope, $http, $sce, keyService) {
+app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http, keyService) {
 
     /* the spinner */
     $scope.loading = false;
@@ -30,6 +30,42 @@ app.controller('ctrl', ['$scope', '$http', '$sce', 'keyService', function($scope
     /* here's where we'll keep track of whether an image had been replaced already (this should also be sessionstorage */
     $scope.replaced = [];
 
+
+    /* this is the sub-function we'll call when we need three new items */
+    $scope.cleanInit = function(adat, current, index) {
+        $scope.results.push({ id: adat.data.photos.photo[current].id, src: adat.data.photos.photo[current].url_l, index: index });
+    };
+
+    /*  the sub-function to call when we find a duplicate and need to replace it
+        this should be almost exactly like returnOne */
+    $scope.replaceDuplicate = function() {
+        $scope.loading = true;
+
+        var newItem = {};
+
+        var nap = randomDate(randomDate(new Date(2012, 01, 01), new Date(2016, 12, 31)), new Date());
+        var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&per_page=500&format=json&nojsoncallback=1';
+
+        var random = Math.floor(2 + Math.random() * 500);
+
+        /* get a new item */
+        $http({
+                method: 'POST',
+                url: api
+            })
+            .then(function successCallback(response) {
+                newItem = { id: response.data.photos.photo[random].id, src: response.data.photos.photo[random].url_l, index: item.index };
+
+                /*  when writing to sessionstorage, get it first,
+                    then add to it, then put it back */
+                $scope.store = JSON.parse(sessionStorage.getItem("images"));
+                $scope.store.push(response.data.photos.photo[random].id);
+                sessionStorage.setItem("images", JSON.stringify($scope.store));
+
+                /* replace the last item in results with the new one */
+                $scope.results.splice(-1, 1, newItem);
+            })
+    }
     $scope.returnOne = function(item) {
 
         $scope.loading = true;
@@ -37,10 +73,10 @@ app.controller('ctrl', ['$scope', '$http', '$sce', 'keyService', function($scope
         /* only do this once per image */
         if ($scope.replaced.indexOf(item.index) === -1) {
 
-            var nap = randomDate(new Date(2012, 01, 01), new Date());
-            var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&format=json&nojsoncallback=1';
+            var nap = randomDate(randomDate(new Date(2006, 01, 01), new Date(2016, 12, 31)), new Date());
+            var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&per_page=500&format=json&nojsoncallback=1';
 
-            var random = Math.floor(2 + Math.random() * 50);
+            var random = Math.floor(2 + Math.random() * 500);
 
             /* get a new item */
             $http({
@@ -57,7 +93,7 @@ app.controller('ctrl', ['$scope', '$http', '$sce', 'keyService', function($scope
                     $scope.replaced.push(item.index);
                 })
         } else {
-            alert("Elfogytak a lehetőségek.")
+            alert("Csak egyszer kérhetsz újat.")
             $scope.loading = false;
         }
     };
@@ -66,26 +102,37 @@ app.controller('ctrl', ['$scope', '$http', '$sce', 'keyService', function($scope
     $scope.returnThree = function() {
         $scope.loading = true;
         /* egyelőre odaadjuk neki, később service-ből jöjjön */
-        var nap = randomDate(new Date(2012, 01, 01), new Date());
+        var nap = randomDate(new Date(2006, 01, 01), new Date());
         var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&format=json&nojsoncallback=1';
 
-        /*
-        var api = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=160f672f62d2f429e0f06fe9eb8cb555&tags=music&format=json&extras=width_h&privacy_filter=1&sort=interestingness-desc&nojsoncallback=1";
-        $sce.trustAsResourceUrl(api);
-        */
         $http({
                 method: 'POST',
                 url: api
             })
             .then(function successCallback(response) {
-                $scope.results = [];
-                indices.forEach(function(current, index, array) {
-                    $scope.results.push({ id: response.data.photos.photo[current].id, src: response.data.photos.photo[current].url_l, index: index });
-                    $scope.store.push(response.data.photos.photo[current].id);
-                    /*
-                    $scope.results.push("https://farm" + response.data.photos.photo[current].farm + ".staticflickr.com/" + response.data.photos.photo[current].server + "/" + response.data.photos.photo[current].id + "_" + response.data.photos.photo[current].secret + "_h.jpg");
-                    */
-                })
+                /* if we have a clean page load, with session storage empty */
+                if ($scope.store.length === 0) {
+                    $scope.results = [];
+                    indices.forEach(function(current, index, array) {
+                        $scope.store.push(response.data.photos.photo[current].id);
+                        sessionStorage.setItem("images", JSON.stringify($scope.store));
+                        $scope.cleanInit(response, current, index);
+                    });
+                } else {
+                    /* get sessionstorage, inspect it, then stringify it back */
+                    $scope.store = JSON.parse(sessionStorage.getItem("images"));
+                    indices.forEach(function(current, index, array) {
+                        if ($scope.store.indexOf(response.data.photos.photo[current].id !== -1)) {
+                            /*  replace the image, but not the other two!
+                                we'll need to push it to results to call the other function on it */
+                            $scope.results.push({ id: response.data.photos.photo[current].id, src: response.data.photos.photo[current].url_l, index: index })
+                                /*  assuming the last result is the one we just pushed,
+                                    we don't even need a param for replaceDuplicate */
+                            $scope.replaceDuplicate();
+                        }
+                    })
+
+                }
             });
     };
     $scope.returnThree();
