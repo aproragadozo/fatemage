@@ -11,7 +11,7 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
     /* the random indices */
     var indices = [];
     for (var i = 0; i < 3; i++) {
-        indices.push(Math.floor(2 + Math.random() * 100));
+        indices.push(Math.floor(1 + Math.random() * 100));
     }
     /* the date utility functions */
     function dateToYMD(date) {
@@ -44,7 +44,7 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
         var newItem = {};
 
         var nap = randomDate(randomDate(new Date(2012, 01, 01), new Date(2016, 12, 31)), new Date());
-        var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&per_page=500&format=json&nojsoncallback=1';
+        var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&date=' + nap + '&extras=url_l&per_page=500&format=json&nojsoncallback=1';
 
         var random = Math.floor(2 + Math.random() * 500);
 
@@ -73,10 +73,10 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
         /* only do this once per image */
         if ($scope.replaced.indexOf(item.index) === -1) {
 
-            var nap = randomDate(randomDate(new Date(2006, 01, 01), new Date(2016, 12, 31)), new Date());
-            var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&per_page=500&format=json&nojsoncallback=1';
+            var nap = randomDate(new Date(2012, 01, 01), new Date());
+            var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&date=' + nap + '&extras=url_l&format=json&nojsoncallback=1';
 
-            var random = Math.floor(2 + Math.random() * 500);
+            var random = Math.floor(2 + Math.random() * 100);
 
             /* get a new item */
             $http({
@@ -102,8 +102,8 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
     $scope.returnThree = function() {
         $scope.loading = true;
         /* egyelőre odaadjuk neki, később service-ből jöjjön */
-        var nap = randomDate(new Date(2006, 01, 01), new Date());
-        var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&extras=url_l,' + nap + '&format=json&nojsoncallback=1';
+        var nap = randomDate(new Date(2012, 01, 01), new Date());
+        var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&date=' + nap + '&extras=url_l&format=json&nojsoncallback=1';
 
         $http({
                 method: 'POST',
