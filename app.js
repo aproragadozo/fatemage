@@ -1,10 +1,20 @@
-var app = angular.module('plunker', []);
+var app = angular.module('plunker', ['ngDialog']);
 
 app.service('keyService', function() {
     this.key = '160f672f62d2f429e0f06fe9eb8cb555';
 });
 
-app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http, keyService) {
+app.controller('ctrl', ['$scope', '$http', 'ngDialog', 'keyService', function($scope, $http, ngDialog, keyService) {
+
+    /* the modal */
+    $scope.showModal = function(index) {
+        ngDialog.openConfirm({
+            template: 'modal.html',
+            className: 'ngdialog-theme-default',
+            scope: $scope,
+            data: { index: index }
+        });
+    };
 
     /* the spinner */
     $scope.loading = false;
@@ -66,12 +76,12 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
                 $scope.results.splice(-1, 1, newItem);
             })
     }
-    $scope.returnOne = function(item) {
+    $scope.returnOne = function(index) {
 
         $scope.loading = true;
         var newElement = {};
         /* only do this once per image */
-        if ($scope.replaced.indexOf(item.index) === -1) {
+        if ($scope.replaced.indexOf(index) === -1) {
 
             var nap = randomDate(new Date(2012, 01, 01), new Date());
             var api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=' + keyService.key + '&date=' + nap + '&extras=url_l&format=json&nojsoncallback=1';
@@ -84,13 +94,13 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
                     url: api
                 })
                 .then(function successCallback(response) {
-                    newElement = { id: response.data.photos.photo[random].id, src: response.data.photos.photo[random].url_l, index: item.index };
+                    newElement = { id: response.data.photos.photo[random].id, src: response.data.photos.photo[random].url_l, index: index };
 
                     $scope.store.push(response.data.photos.photo[random].id);
                     /* replace with new element */
-                    $scope.results.splice(item.index, 1, newElement);
+                    $scope.results.splice(index, 1, newElement);
                     /* push index to replaced-store */
-                    $scope.replaced.push(item.index);
+                    $scope.replaced.push(index);
                 })
         } else {
             alert("Csak egyszer kérhetsz újat.")
@@ -136,6 +146,12 @@ app.controller('ctrl', ['$scope', '$http', 'keyService', function($scope, $http,
             });
     };
     $scope.returnThree();
+}]);
+
+app.controller('promptCtrl', ['$scope', 'close', function($scope, close) {
+    $scope.close = function(answer, index) {
+
+    }
 }]);
 
 app.directive('imageonload', function() {
