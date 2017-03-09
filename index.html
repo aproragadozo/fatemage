@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Testing jQuery Mobile</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+        .ui-footer {
+            background: none;
+            border: none;
+            bottom: 0;
+        }
+        
+        .bunk {
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page1" data-role="page" style="background-size:cover; background-position: center center; background-repeat:no-repeat; background-image:url('testimage/schossberger.jpg');">
+
+        <div class="content" data-role="content">
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <a href="#page2" class="ui-btn ui-corner-all" style="display:block; align-self: center;">Varázsolni akarok!</a>
+            </div>
+            <div id="loading" style="width: 100%;
+                        height: 100%;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        background-color: rgba(0,0,0,.5);
+                        -webkit-transition: all .5s ease;
+                        transition: all .5s ease;
+                        z-index: 1000;
+                        display:none;">
+                <div style="width:100%; height:100%; display: flex; align-content:center; justify-content:center;">
+                    <img src="testimage/rolling.gif" style="align-self: center;" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page2" data-role="page" class="bunk" data-dom-cache="true">
+        <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <h1>Image request</h1>
+        </div>
+        <div class="content" data-role="content">
+            <!--
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page3">Go to next page!</a></p>
+            </div>
+            -->
+        </div>
+        <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a class="prev ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-l" href="#" data-role="button">Icon only</a>
+                <a class="next ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-r" href="#" data-role="button">Icon only</a>
+            </div>
+        </div>
+    </div>
+    <div id="page3" data-role="page" class="bunk" data-dom-cache="true">
+        <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <h1>Image request</h1>
+        </div>
+        <div class="content" data-role="content">
+            <!--
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page4">Go to next page!</a></p>
+            </div>
+            -->
+        </div>
+        <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a class="prev ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-l" href="#" data-role="button">Icon only</a>
+                <a class="next ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-r" href="#" data-role="button">Icon only</a>
+            </div>
+        </div>
+    </div>
+    <div id="page4" data-role="page" class="bunk" data-dom-cache="true">
+        <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <h1>Image request</h1>
+        </div>
+        <div class="content" data-role="content">
+            <!-- 
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page1">Go to next page!</a></p>
+            </div>
+            -->
+        </div>
+        <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a class="prev ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-l" href="#" data-role="button">Icon only</a>
+                <a class="next ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-r" href="#" data-role="button">Icon only</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // making sure the user knows that the page is working
+        // until the images have downloaded
+        $(document).ajaxStop(function() {
+            $('#loading').hide();
+        });
+
+        $(document).ajaxStart(function() {
+            $('#loading').show();
+        });
+        /*  we don't actually
+            need to get 500 images any more - so no need for this randomizing
+        // the arrays with the six images
+        var startingThree = [];
+        for (var i = 0; i < 3; i++) {
+            startingThree.push(Math.floor(1 + Math.random() * 250));
+        }
+        // these subs aren't yet in use
+        var subs = [];
+        for (var j = 0; j < 3; j++) {
+            subs.push(Math.floor(Math.random() * 251) + 250);
+        }
+        */
+
+        // when the starting screen loads
+        $(document).one("pagecreate", function() {
+                /* the date utility functions */
+                function dateToYMD(date) {
+                    var d = date.getDate();
+                    var m = date.getMonth() + 1;
+                    var y = date.getFullYear();
+                    return '' + y + '-' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+                }
+
+                function randomDate(start, end) {
+                    var date = new Date(+start + Math.random() * (end - start));
+                    return dateToYMD(date);
+                }
+                var nap = randomDate(new Date(2012, 01, 01), new Date());
+
+                // Handler for navigating to the next page
+                function navnext(next) {
+                    $("body").pagecontainer("change", next, {
+                        transition: "slide"
+                    });
+                }
+                // Handler for navigating to the previous page
+                function navprev(prev) {
+                    $("body").pagecontainer("change", prev, {
+                        transition: "slide",
+                        reverse: true
+                    });
+                }
+                // not-deprecated swipeleft
+                $(document).on("swipeleft", ".ui-page", function(event) {
+                    if (!event.handled) {
+                        var nextpage = $("body").pagecontainer("getActivePage").next('.bunk');
+                        if (nextpage.length > 0) {
+                            navnext(nextpage);
+                        }
+                        event.handled = true;
+                    }
+                    return false;
+                });
+                // not-deprecated swiperight
+                $(document).on("swiperight", ".ui-page", function(event) {
+                    if (!event.handled) {
+                        var prevpage = $(this).prev('.bunk');
+                        if (prevpage.length > 0) {
+                            navprev(prevpage);
+                        }
+                        event.handled = true;
+                    }
+                    return false;
+                });
+                // navigate to next page with the button also
+                $(document).on("click", ".next", function() {
+                    var nextpage = $(".ui-page-active").next('.bunk');
+                    if (nextpage.length > 0) {
+                        navnext(nextpage);
+                    }
+                    return false;
+                });
+                // navigate to previous page with the button also
+                $(document).on("click", ".prev", function() {
+                    var prevpage = $(".ui-page-active").prev('.bunk');
+                    if (prevpage.length > 0) {
+                        navprev(prevpage);
+                    }
+                    return false;
+                });
+
+                /*
+                // Navigate to the next page on swipeleft
+                $(document).on("swipeleft", ".ui-page", function(event) {
+                    if (!event.handled) {
+                        var nextpage = $.mobile.activePage.next('[data-role="page"]');
+                        if (nextpage.length > 0) {
+                            $.mobile.changePage(nextpage, {
+                                transition: "slide",
+                                reverse: false
+                            }, true, true);
+                        }
+                        event.handled = true;
+                    }
+                    return false;
+                });
+                // Navigate to previous page on swiperight
+                $(document).on("swiperight", ".ui-page", function(event) {
+                    if (!event.handled) {
+                        var prevpage = $(this).prev('[data-role="page"]');
+                        if (prevpage.length > 0) {
+                            $.mobile.changePage(prevpage, {
+                                transition: "slide",
+                                reverse: true
+                            }, true, true);
+                        }
+                        event.handled = true;
+                    }
+                    return false;
+                });
+                */
+                /* persistent header and footer
+            
+                            $("#header").toolbar({
+                                theme: "b"
+                            });
+                            $("#footer").toolbar({
+                                theme: "b"
+                            });
+                            we don't actually need these on the starting screen, though */
+                // the api call to flickr
+                $.ajax({
+                    type: "POST",
+                    // 3 images for now - make this 6 when you get there
+                    url: 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=160f672f62d2f429e0f06fe9eb8cb555&date=' + nap + '&extras=url_l&per_page=3&format=json&nojsoncallback=1',
+                    datatype: "json",
+                    success: function(data) {
+                        $("#page2").css("background-image", "url(https://farm" + data.photos.photo[0].farm + ".staticflickr.com/" + data.photos.photo[0].server + "/" + data.photos.photo[0].id + "_" + data.photos.photo[0].secret + "_b.jpg)");
+                        $("#page3").css("background-image", "url(https://farm" + data.photos.photo[1].farm + ".staticflickr.com/" + data.photos.photo[1].server + "/" + data.photos.photo[1].id + "_" + data.photos.photo[1].secret + "_b.jpg)");
+                        $("#page4").css("background-image", "url(https://farm" + data.photos.photo[2].farm + ".staticflickr.com/" + data.photos.photo[2].server + "/" + data.photos.photo[2].id + "_" + data.photos.photo[2].secret + "_b.jpg)");
+                    }
+                });
+            })
+            // do this for every page in turn
+            // something's not OK here...
+        $(document).on("pageshow", ".bunk", function() {
+            console.log("hugyrabugy!");
+            var thispage = $(this);
+            var nextpage = thispage.next('.bunk');
+            var prevpage = thispage.prev('.bunk');
+
+            // Disable nav buttons when no prev or next page
+            $(".next.ui-state-disabled, .prev.ui-state-disabled").removeClass("ui-state-disabled");
+            if (!nextpage[0]) {
+                $(".next").addClass("ui-state-disabled");
+            }
+            if (!prevpage[0]) {
+                $(".prev").addClass("ui-state-disabled");
+            }
+        });
+    </script>
+</body>
+
+</html>
