@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <style>
-        .ui-footer {
+        .ui-footer,
+        .ui-header {
             background: none;
             border: none;
             bottom: 0;
@@ -49,14 +50,22 @@
     </div>
     <div id="page2" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
-            <h1>Image request</h1>
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a href="#newImage2" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
+                <div id="newImage2" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="header" data-theme="a">
+                        <h1>Biztos?</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
+                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
+                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="content" data-role="content">
-            <!--
-            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
-                <p style="display:block; align-self: center;"><a href="#page3">Go to next page!</a></p>
-            </div>
-            -->
+           
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -67,14 +76,22 @@
     </div>
     <div id="page3" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
-            <h1>Image request</h1>
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a href="#newImage3" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
+                <div id="newImage3" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="header" data-theme="a">
+                        <h1>Biztos?</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
+                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
+                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="content" data-role="content">
-            <!--
-            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
-                <p style="display:block; align-self: center;"><a href="#page4">Go to next page!</a></p>
-            </div>
-            -->
+            
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -85,14 +102,22 @@
     </div>
     <div id="page4" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
-            <h1>Image request</h1>
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
+                <a href="#newImage4" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
+                <div id="newImage4" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="header" data-theme="a">
+                        <h1>Biztos?</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
+                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
+                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="content" data-role="content">
-            <!-- 
-            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
-                <p style="display:block; align-self: center;"><a href="#page1">Go to next page!</a></p>
-            </div>
-            -->
+            
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -111,19 +136,7 @@
         $(document).ajaxStart(function() {
             $('#loading').show();
         });
-        /*  we don't actually
-            need to get 500 images any more - so no need for this randomizing
-        // the arrays with the six images
-        var startingThree = [];
-        for (var i = 0; i < 3; i++) {
-            startingThree.push(Math.floor(1 + Math.random() * 250));
-        }
-        // these subs aren't yet in use
-        var subs = [];
-        for (var j = 0; j < 3; j++) {
-            subs.push(Math.floor(Math.random() * 251) + 250);
-        }
-        */
+        
 
         // when the starting screen loads
         $(document).one("pagecreate", function() {
@@ -154,6 +167,7 @@
                         reverse: true
                     });
                 }
+
                 // not-deprecated swipeleft
                 $(document).on("swipeleft", ".ui-page", function(event) {
                     if (!event.handled) {
@@ -193,60 +207,24 @@
                     return false;
                 });
 
-                /*
-                // Navigate to the next page on swipeleft
-                $(document).on("swipeleft", ".ui-page", function(event) {
-                    if (!event.handled) {
-                        var nextpage = $.mobile.activePage.next('[data-role="page"]');
-                        if (nextpage.length > 0) {
-                            $.mobile.changePage(nextpage, {
-                                transition: "slide",
-                                reverse: false
-                            }, true, true);
-                        }
-                        event.handled = true;
-                    }
-                    return false;
-                });
-                // Navigate to previous page on swiperight
-                $(document).on("swiperight", ".ui-page", function(event) {
-                    if (!event.handled) {
-                        var prevpage = $(this).prev('[data-role="page"]');
-                        if (prevpage.length > 0) {
-                            $.mobile.changePage(prevpage, {
-                                transition: "slide",
-                                reverse: true
-                            }, true, true);
-                        }
-                        event.handled = true;
-                    }
-                    return false;
-                });
-                */
-                /* persistent header and footer
-            
-                            $("#header").toolbar({
-                                theme: "b"
-                            });
-                            $("#footer").toolbar({
-                                theme: "b"
-                            });
-                            we don't actually need these on the starting screen, though */
                 // the api call to flickr
                 $.ajax({
                     type: "POST",
-                    // 3 images for now - make this 6 when you get there
-                    url: 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=160f672f62d2f429e0f06fe9eb8cb555&date=' + nap + '&extras=url_l&per_page=3&format=json&nojsoncallback=1',
+                    // 6 images only, and we'll use them all
+                    url: 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=160f672f62d2f429e0f06fe9eb8cb555&date=' + nap + '&extras=url_l&per_page=6&format=json&nojsoncallback=1',
                     datatype: "json",
                     success: function(data) {
                         $("#page2").css("background-image", "url(https://farm" + data.photos.photo[0].farm + ".staticflickr.com/" + data.photos.photo[0].server + "/" + data.photos.photo[0].id + "_" + data.photos.photo[0].secret + "_b.jpg)");
                         $("#page3").css("background-image", "url(https://farm" + data.photos.photo[1].farm + ".staticflickr.com/" + data.photos.photo[1].server + "/" + data.photos.photo[1].id + "_" + data.photos.photo[1].secret + "_b.jpg)");
                         $("#page4").css("background-image", "url(https://farm" + data.photos.photo[2].farm + ".staticflickr.com/" + data.photos.photo[2].server + "/" + data.photos.photo[2].id + "_" + data.photos.photo[2].secret + "_b.jpg)");
+                        var page2Custom = "url(https://farm" + data.photos.photo[3].farm + ".staticflickr.com/" + data.photos.photo[3].server + "/" + data.photos.photo[3].id + "_" + data.photos.photo[3].secret + "_b.jpg)";
+                        $("#page2").jqmData("custom", page2Custom);
+                        $("#page3").jqmData("custom", "url(https://farm" + data.photos.photo[4].farm + ".staticflickr.com/" + data.photos.photo[4].server + "/" + data.photos.photo[4].id + "_" + data.photos.photo[4].secret + "_b.jpg)");
+                        $("#page4").jqmData("custom", "url(https://farm" + data.photos.photo[5].farm + ".staticflickr.com/" + data.photos.photo[5].server + "/" + data.photos.photo[5].id + "_" + data.photos.photo[5].secret + "_b.jpg)");
                     }
                 });
             })
             // do this for every page in turn
-            // something's not OK here...
         $(document).on("pageshow", ".bunk", function() {
             var thispage = $(this);
             var nextpage = thispage.next('.bunk');
@@ -260,6 +238,12 @@
             if (!prevpage[0]) {
                 $(".prev").addClass("ui-state-disabled");
             }
+        });
+        // the handler for the yes button in the dialog
+        $(".do-it").bind('click', function(event, ui) {
+            var path = $("body").pagecontainer("getActivePage").jqmData("custom");
+            $(this).closest("div:jqmData(role='popup')").popup("close");
+            $("body").pagecontainer("getActivePage").css("background-image", path);
         });
     </script>
 </body>
