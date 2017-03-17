@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div id="page1" data-role="page" style="background-size:cover; background-position: center center; background-repeat:no-repeat; background-image:url('testimage/schossberger.jpg');">
+    <div id="page1" data-role="page" data-cache="false" style="background-size:cover; background-position: center center; background-repeat:no-repeat; background-image:url('testimage/schossberger.jpg');">
 
         <div class="content" data-role="content">
             <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
@@ -50,22 +50,29 @@
     </div>
     <div id="page2" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
-            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
-                <a href="#newImage2" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
-                <div id="newImage2" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
-                    <div data-role="header" data-theme="a">
-                        <h1>Biztos?</h1>
-                    </div>
-                    <div data-role="main" class="ui-content">
-                        <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
-                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
-                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+            <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="left">
+                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#newImage2" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
+            </div>
+            <div id="newImage2" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                <div data-role="header" data-theme="b">
+                    <h1>Biztos?</h1>
+                </div>
+                <div data-role="main" class="ui-content">
+                    <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
+                    <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                        <a href="#" data-theme="a" data-role="button" data-rel="back">Mégsem</a>
+                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all do-it" data-theme="c">Belefér</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="content" data-role="content">
-           
+            <!--
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page3">Go to next page!</a></p>
+            </div>
+            -->
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -77,21 +84,28 @@
     <div id="page3" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
-                <a href="#newImage3" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
+                <a href="#page1" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#newImage3" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
                 <div id="newImage3" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
-                    <div data-role="header" data-theme="a">
+                    <div data-role="header" data-theme="b">
                         <h1>Biztos?</h1>
                     </div>
                     <div data-role="main" class="ui-content">
                         <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
-                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
-                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+                        <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                            <a href="#" data-theme="a" data-role="button" data-rel="back">Mégsem</a>
+                            <button class="ui-btn ui-corner-all ui-shadow ui-corner-all do-it" data-theme="c">Belefér</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="content" data-role="content">
-            
+            <!--
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page4">Go to next page!</a></p>
+            </div>
+            -->
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -103,21 +117,28 @@
     <div id="page4" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
-                <a href="#newImage4" class="ui-btn ui-btn-inline ui-corner-all" data-rel="popup" data-transition="pop" data-position-to="window">Másik képet kérek</a>
+                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#newImage4" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
                 <div id="newImage4" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
-                    <div data-role="header" data-theme="a">
+                    <div data-role="header" data-theme="b">
                         <h1>Biztos?</h1>
                     </div>
                     <div data-role="main" class="ui-content">
                         <h3 class="ui-title">Az új kép varázspontba kerül.</h3>
-                        <a href="#" data-theme="b" data-role="button" data-rel="back">Mégsem</a>
-                        <button class="ui-btn ui-corner-all ui-shadow ui-corner-all ui-btn-inline do-it" data-theme="c">Belefér</button>
+                        <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                            <a href="#" data-theme="a" data-role="button" data-rel="back">Mégsem</a>
+                            <button class="ui-btn ui-corner-all ui-shadow ui-corner-all do-it" data-theme="c">Belefér</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="content" data-role="content">
-            
+            <!-- 
+            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
+                <p style="display:block; align-self: center;"><a href="#page1">Go to next page!</a></p>
+            </div>
+            -->
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -127,6 +148,7 @@
         </div>
     </div>
     <script>
+
         // making sure the user knows that the page is working
         // until the images have downloaded
         $(document).ajaxStop(function() {
@@ -136,7 +158,6 @@
         $(document).ajaxStart(function() {
             $('#loading').show();
         });
-        
 
         // when the starting screen loads
         $(document).one("pagecreate", function() {
@@ -210,7 +231,7 @@
                 // the api call to flickr
                 $.ajax({
                     type: "POST",
-                    // 6 images only, and we'll use them all
+                    // 3 images for now - make this 6 when you get there
                     url: 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=160f672f62d2f429e0f06fe9eb8cb555&date=' + nap + '&extras=url_l&per_page=6&format=json&nojsoncallback=1',
                     datatype: "json",
                     success: function(data) {
@@ -225,6 +246,7 @@
                 });
             })
             // do this for every page in turn
+            // something's not OK here...
         $(document).on("pageshow", ".bunk", function() {
             var thispage = $(this);
             var nextpage = thispage.next('.bunk');
@@ -239,11 +261,23 @@
                 $(".prev").addClass("ui-state-disabled");
             }
         });
-        // the handler for the yes button in the dialog
+        // this is where we change the image if the user clicks 'Belefér'
+        // also, the popup is closed, and the image request button is disabled
         $(".do-it").bind('click', function(event, ui) {
             var path = $("body").pagecontainer("getActivePage").jqmData("custom");
+            $(this).closest("div:jqmData(role='page')").find("a.die").addClass("ui-state-disabled");
             $(this).closest("div:jqmData(role='popup')").popup("close");
             $("body").pagecontainer("getActivePage").css("background-image", path);
+        });
+
+        // reload the starting page when navigated to from inside the app
+        $(".restarter").bind('click', function(event, ui) {
+            var target = $("#page1");
+            $("body").pagecontainer("change", target, {
+                transition: "slide",
+                reverse: true
+            });
+            location.reload(true);
         });
     </script>
 </body>
