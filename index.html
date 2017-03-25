@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Testing jQuery Mobile</title>
+    <title>Gergely varázslóiskola</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +51,23 @@
     <div id="page2" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="left">
-                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-theme="b" data-role="button">Icon only</a>
+
+                <div id="alma" class="confirm" data-role="popup" data-position-to="window" data-transition="pop" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title" style="text-align:center;">Kezded elölről?</h3>
+                        <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                            <a href="#" data-theme="a" data-role="button" data-rel="back">Ja, nem</a>
+                            <button class="ui-btn ui-corner-all ui-shadow ui-corner-all reset" data-theme="c">Persze</button>
+                        </div>
+                        <form style="padding-top:5px;">
+                            <label style="font-size:10px;">
+                                <input class="dismiss" name="checkbox-0" data-mini="true" type="checkbox">Ezt ne lássam többet
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
                 <a href="#newImage2" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
             </div>
             <div id="newImage2" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
@@ -68,11 +84,7 @@
             </div>
         </div>
         <div class="content" data-role="content">
-            <!--
-            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
-                <p style="display:block; align-self: center;"><a href="#page3">Go to next page!</a></p>
-            </div>
-            -->
+ 
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -84,7 +96,23 @@
     <div id="page3" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
-                <a href="#page1" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-theme="b" data-role="button">Icon only</a>
+
+                <div id="alma" class="confirm" data-role="popup" data-position-to="window" data-transition="pop" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title" style="text-align:center;">Kezded elölről?</h3>
+                        <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                            <a href="#" data-theme="a" data-role="button" data-rel="back">Ja, nem</a>
+                            <button class="ui-btn ui-corner-all ui-shadow ui-corner-all reset" data-theme="c">Persze</button>
+                        </div>
+                        <form style="padding-top:5px;">
+                            <label style="font-size:10px;">
+                                <input class="dismiss" name="checkbox-0" data-mini="true" type="checkbox">Ezt ne lássam többet
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
                 <a href="#newImage3" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
                 <div id="newImage3" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
                     <div data-role="header" data-theme="b">
@@ -101,11 +129,7 @@
             </div>
         </div>
         <div class="content" data-role="content">
-            <!--
-            <div style="width:100%; height:100vh; display: flex; align-content:center; justify-content:center;">
-                <p style="display:block; align-self: center;"><a href="#page4">Go to next page!</a></p>
-            </div>
-            -->
+
         </div>
         <div id="footer" data-role="footer" data-id="f" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
@@ -117,7 +141,23 @@
     <div id="page4" data-role="page" class="bunk" data-dom-cache="true">
         <div id="header" data-role="header" data-id="foo" data-position="fixed" data-fullscreen="true" data-theme="b">
             <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center">
-                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-ajax="false" data-theme="b" data-role="button">Icon only</a>
+                <a href="#" class="ui-btn ui-btn-inline ui-corner-all ui-btn-icon-notext ui-icon-back ui-btn-left restarter" data-theme="b" data-role="button">Icon only</a>
+
+                <div id="alma" class="confirm" data-role="popup" data-position-to="window" data-transition="pop" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+                    <div data-role="main" class="ui-content">
+                        <h3 class="ui-title" style="text-align:center;">Kezded elölről?</h3>
+                        <div data-role="controlgroup" data-type="horizontal" data-corners="false" align="center" data-theme="c">
+                            <a href="#" data-theme="a" data-role="button" data-rel="back">Ja, nem</a>
+                            <button class="ui-btn ui-corner-all ui-shadow ui-corner-all reset" data-theme="c">Persze</button>
+                        </div>
+                        <form style="padding-top:5px;">
+                            <label style="font-size:10px;">
+                                <input class="dismiss" name="checkbox-0" data-mini="true" type="checkbox">Ezt ne lássam többet
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
                 <a href="#newImage4" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right die" data-rel="popup" data-transition="pop" data-position-to="window">Új képet kérek</a>
                 <div id="newImage4" data-role="popup" data-overlay-theme="b" data-theme="b" data-dismissible="false">
                     <div data-role="header" data-theme="b">
@@ -148,7 +188,6 @@
         </div>
     </div>
     <script>
-
         // making sure the user knows that the page is working
         // until the images have downloaded
         $(document).ajaxStop(function() {
@@ -158,6 +197,22 @@
         $(document).ajaxStart(function() {
             $('#loading').show();
         });
+
+        // function to disable confirm popup
+        function popupDisabler() {
+            $(this).popup("disable");
+            $(this).closest("div:jqmData(role='page')").find("a.ui-btn-left").jqmRemoveData("rel").jqmRemoveData("transition").attr("href", "#").addClass("restarter");
+        };
+        // function for restarting the app
+        function restart() {
+            var target = $("#page1");
+            $(this).closest("div:jqmData(role='popup')").popup("close");
+            $("body").pagecontainer("change", target, {
+                transition: "slide",
+                reverse: true
+            });
+            location.reload(true);
+        }
 
         // when the starting screen loads
         $(document).one("pagecreate", function() {
@@ -228,10 +283,24 @@
                     return false;
                 });
 
+                // reload the starting page when navigated to from inside the app
+                $(".restarter").on('click', function() {
+                    if (sessionStorage.getItem("dismiss")) {
+                        restart();
+                    } else {
+                        try {
+                            $(this).closest("div:jqmData(role='page')").find(".confirm").popup('open');
+                        }
+                        catch (e) {
+                            console.log(e);
+                        }
+                    }
+                });
+
                 // the api call to flickr
                 $.ajax({
                     type: "POST",
-                    // 3 images for now - make this 6 when you get there
+                    // 6 images in all
                     url: 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=160f672f62d2f429e0f06fe9eb8cb555&date=' + nap + '&extras=url_l&per_page=6&format=json&nojsoncallback=1',
                     datatype: "json",
                     success: function(data) {
@@ -246,7 +315,6 @@
                 });
             })
             // do this for every page in turn
-            // something's not OK here...
         $(document).on("pageshow", ".bunk", function() {
             var thispage = $(this);
             var nextpage = thispage.next('.bunk');
@@ -270,15 +338,19 @@
             $("body").pagecontainer("getActivePage").css("background-image", path);
         });
 
-        // reload the starting page when navigated to from inside the app
-        $(".restarter").bind('click', function(event, ui) {
-            var target = $("#page1");
-            $("body").pagecontainer("change", target, {
-                transition: "slide",
-                reverse: true
-            });
-            location.reload(true);
-        });
+        // the don't show this again checkbox
+        // using sessionstorage
+        $(document).on("change", ".dismiss", function() {
+                if (this.checked) {
+                    // set something in sessionstorage
+                    sessionStorage.setItem("dismiss", "value");
+                } else {
+                    sessionStorage.removeItem("dismiss");
+                }
+            })
+            // make the yes button inside the confirm popup
+            // restart the app
+        $(document).on("click", ".reset", restart)
     </script>
 </body>
 
